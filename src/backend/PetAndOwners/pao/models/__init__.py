@@ -1,2 +1,2 @@
-from .owners import Owner
-from .pets import Pet
+from .owner import Owner
+from .pet import Pet

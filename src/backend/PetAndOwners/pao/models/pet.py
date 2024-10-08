@@ -1,5 +1,5 @@
 from django.db import models
-from .owners import Owner
+from .owner import Owner
 
 class Pet(models.Model):
     name = models.CharField(max_length=50)
