@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
-                ('pet_type', models.CharField(choices=[('undefined', 'Undefined'), ('cat', 'Cat'), ('dogDog', 'Dog')], default='undefined', max_length=9)),
+                ('pet_type', models.CharField(choices=[('undefined', 'Undefined'), ('cat', 'Cat'), ('dog', 'Dog')], default='undefined', max_length=9)),
                 ('owner', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='pets', to='pao.owner')),
             ],
         ),
