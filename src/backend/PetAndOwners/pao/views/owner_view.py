@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from ..models import Owner
-from ..serializers import OwnerSerializer
+from ..serializers import OwnerSerializer, PetSerializer
 
 
 class OwnersListApiView(APIView):
@@ -54,5 +54,16 @@ class OwnerApiView(APIView):
                 return Response({"error":f"Owner with id: {id} does not exist"}, status=status.HTTP_404_NOT_FOUND)
         return Response({"error":"Owner id not provided"}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class OwnerPetsApiView(APIView):
+    def get(self, request, id=None):
+        if id is not None:
+            try:
+                owners_pets = Owner.objects.get(id=id).pets
+                serializer = PetSerializer(owners_pets, many=True)
+                return Response(serializer.data)
+            except Owner.DoesNotExist:
+                return Response({"error":f"Owner with id: {id} does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error":"Owner id not provided"}, status=status.HTTP_400_BAD_REQUEST)
 
 
