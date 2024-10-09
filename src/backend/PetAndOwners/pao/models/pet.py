@@ -7,7 +7,7 @@ class Pet(models.Model):
     class PetType(models.TextChoices):
         UNDEFINED = "undefined", "Undefined"
         CAT = "cat", "Cat"
-        DOG = "dog" "Dog"
+        DOG = "dog", "Dog"
     pet_type = models.CharField(
         max_length=9,
         choices=PetType.choices,
