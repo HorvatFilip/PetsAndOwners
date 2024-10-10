@@ -1,0 +1,69 @@
+[
+    {
+      "model": "pao.owner",
+      "pk": 1,
+      "fields": {
+        "name": "Alice"
+      }
+    },
+    {
+      "model": "pao.owner",
+      "pk": 2,
+      "fields": {
+        "name": "Bob"
+      }
+    },
+    {
+      "model": "pao.owner",
+      "pk": 3,
+      "fields": {
+        "name": "Charlie"
+      }
+    },
+    {
+      "model": "pao.pet",
+      "pk": 1,
+      "fields": {
+        "name": "Whiskers",
+        "pet_type": "cat",
+        "owner": 1
+      }
+    },
+    {
+      "model": "pao.pet",
+      "pk": 2,
+      "fields": {
+        "name": "Fido",
+        "pet_type": "dog",
+        "owner": 2
+      }
+    },
+    {
+      "model": "pao.pet",
+      "pk": 3,
+      "fields": {
+        "name": "Bella",
+        "pet_type": "dog",
+        "owner": 1
+      }
+    },
+    {
+      "model": "pao.pet",
+      "pk": 4,
+      "fields": {
+        "name": "Shadow",
+        "pet_type": "cat",
+        "owner": 3
+      }
+    },
+    {
+      "model": "pao.pet",
+      "pk": 5,
+      "fields": {
+        "name": "Luna",
+        "pet_type": "undefined",
+        "owner": 2
+      }
+    }
+  ]
+  
