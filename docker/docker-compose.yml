@@ -4,14 +4,17 @@ services:
   backend:
     container_name: backend
     build:
-      context: ../            # Set the context to the parent directory containing both docker/ and src/
-      dockerfile: docker/backend/Dockerfile  # Path to Dockerfile within the build context
+      context: ../
+      dockerfile: docker/backend/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ../src/backend/PetAndOwners:/PetAndOwners    # Mount the Django source code
+      - ../src/backend/PetAndOwners:/PetAndOwners
     ports:
       - "8000:8000"
     depends_on:
+      db:
+        condition: service_healthy
+    links:
       - db
     networks:
       - app-network
@@ -32,6 +35,11 @@ services:
       - db-data:/var/lib/postgresql/data
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d 'user=admin dbname=mydatabase host=localhost port=5432'"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   app-network:
