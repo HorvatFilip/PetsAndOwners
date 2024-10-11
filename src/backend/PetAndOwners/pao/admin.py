@@ -7,4 +7,9 @@ class OwnerAdmin(admin.ModelAdmin):
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('name', 'pet_type', 'owner')
+    list_display = ('name', 'pet_type', 'get_owners')
+
+    def get_owners(self, obj):
+        return ", ".join([owner.name for owner in obj.owners.all()])
+
+    get_owners.short_description = 'Owners'

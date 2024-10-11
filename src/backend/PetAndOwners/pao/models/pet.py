@@ -14,10 +14,7 @@ class Pet(models.Model):
         default=PetType.UNDEFINED
     )
 
-    owner = models.ForeignKey(to=Owner, null=True, on_delete=models.SET_NULL, related_name="pets")
-
-
-
+    owners = models.ManyToManyField(to=Owner, related_name="pets")
 
     def __str__(self):
         return self.name
