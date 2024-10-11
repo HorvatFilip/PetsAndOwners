@@ -17,15 +17,15 @@ class ShopApiView(APIView):
                 owner = Owner.objects.get(id=owner_id)
                 pet = Pet.objects.get(id=pet_id)
                 if action == "buy":
-                    if pet.owner == owner:
+                    if owner in pet.owners.all():
                         return Response({"message":f"Owner '{owner.name}' already owns '{pet.name}'"})
-                    pet.owner = owner
+                    pet.owners.add(owner)
                     pet.save()
                     return Response({"message":f"Owner '{owner.name}' successfully bought '{pet.name}'"})
                 elif action == "sell":
-                    if pet.owner != owner:
+                    if owner not in pet.owners.all():
                         return Response({"message":f"Owner '{owner.name}' can't sell '{pet.name}'"})
-                    pet.owner = None
+                    pet.owners.remove(owner)
                     pet.save()
                     return Response({"message":f"Owner '{owner.name}' successfully sold '{pet.name}'"})
                 else:
