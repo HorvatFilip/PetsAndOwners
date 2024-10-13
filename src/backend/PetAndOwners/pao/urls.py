@@ -5,7 +5,8 @@ from .views import (
     PetsListApiView,
     PetApiView,
     OwnerPetsApiView,
-    ShopApiView
+    ShopApiView,
+    stats_api
 )
 
 
@@ -17,5 +18,6 @@ urlpatterns = [
     path("pet/<int:id>/", PetApiView.as_view(), name="pet-id"),
     path("pet/", PetApiView.as_view(), name="pet"),
     path("owner/<int:id>/pets/", OwnerPetsApiView.as_view(), name="owner-pets"),
-    path("shop/", ShopApiView.as_view(), name="shop")
+    path("shop/", ShopApiView.as_view(), name="shop"),
+    path("stats/", stats_api.urls)
 ]

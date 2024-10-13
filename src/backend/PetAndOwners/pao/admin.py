@@ -1,7 +1,15 @@
 from django.contrib import admin
 from .models import Owner, Pet
 
-admin.site.register(Owner)
-admin.site.register(Pet)
+@admin.register(Owner)
+class OwnerAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
-# Register your models here.
+@admin.register(Pet)
+class PetAdmin(admin.ModelAdmin):
+    list_display = ('name', 'pet_type', 'get_owners')
+
+    def get_owners(self, obj):
+        return ", ".join([owner.name for owner in obj.owners.all()])
+
+    get_owners.short_description = 'Owners'
